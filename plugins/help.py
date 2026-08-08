@@ -18,6 +18,7 @@ async def help_command(client: Client, message: Message):
     help_text += "• `/id` - မိမိ ID ကိုကြည့်ရန်\n"
     help_text += "• `/couple` - groupတွင်သုံးရန်\n"
     help_text += "• `/happy` - groupတွင်ကြည့်ရန်\n"
+    help_text += "• `/mylove` - အချစ်ရေးဟောရန်\n"
     help_text += "• `/love` - အချစ်ရေးဟောရန်\n\n"
 
     # --- ၂။ Admin များအတွက် စစ်ဆေးခြင်း ---
