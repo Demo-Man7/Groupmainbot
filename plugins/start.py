@@ -5,13 +5,13 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 # --- Configuration ---
 # မင်းသတ်မှတ်ထားတဲ့ ပုံ Link
-DEFAULT_PHOTO = "https://files.catbox.moe/jqgw0f.jpg" 
+DEFAULT_PHOTO = "https://files.catbox.moe/q9g3z4.jpg" 
 WELCOME_STICKER = "CAACAgUAAxkBAAIe72mqfmL7cPOdiA5TOr6Gsih09cVTAALgGQACfA2YVRl1rlBfNwT5HgQ"
 
 @Client.on_message(filters.command("start") & filters.private)
 async def start_cmd(client: Client, message: Message):
     # ၁။ စာသား တစ်လုံးချင်းပေါ်အောင်လုပ်မယ်
-    text = "မဂ်လာပါ အချစ်လေး ပူတူးတူးလေး"
+    text = "𝒲ℯ𝓁𝒸ℴ𝓂ℯ ℬ𝒶𝒷𝓎"
     typing_msg = await message.reply_text("...")
     
     display_text = ""
@@ -24,8 +24,7 @@ async def start_cmd(client: Client, message: Message):
             pass
     
     await asyncio.sleep(1) 
-    await typing_msg.delete() 
-
+    await typing_msg.delete()
     # ၂။ Sticker ပို့မယ်
     try:
         sent_stk = await message.reply_sticker(WELCOME_STICKER)
@@ -39,20 +38,20 @@ async def start_cmd(client: Client, message: Message):
     
     welcome_final = (
         f"Welcome {user.mention} ✨\n\n"
-        "**အချစ်များ** မှ ကြိုဆိုပါတယ်ဗျာ။\n"
+        "**Group Help Bot** မှ ကြိုဆိုပါတယ်ဗျာ။\n"
         "Auto Reply နဲ့ Group Management Bot တစ်ခုဖြစ်ပါတယ်။\n"
-        "အချစ်ရေးများလည်းမေးလို့ရပါတယ် /love ဖြင့်။\n"
+        "အချစ်ရေးများလည်းမေးလို့ရပါတယ် /love or /mylove or /couple ဖြင့်။\n"
         "သိလိုရာများကို /help တွေကိုနှိပ်ပြီး လေ့လာနိုင်ပါတယ်ဗျာ။"
     )
 
     buttons = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("𝘾𝙝𝙖𝙣𝙣𝙚𝙡 📢", url="https://t.me/CHANNEL_FOR_USS"),
-            InlineKeyboardButton("𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧 👨‍💻", url="tg://resolve?domain=ThanMinHtwe&text=𝙃𝙚𝙮𝙃𝙚𝙡𝙡𝙤𝙆𝙤𝘽𝙖𝙁𝙞𝙣")
+            InlineKeyboardButton("𝘾𝙝𝙖𝙣𝙣𝙚𝙡 📢", url="https://t.me/Buddhaknowledge6"),
+            InlineKeyboardButton("𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧 👨‍💻", url="tg://resolve?domain=fisoz&text=𝙃𝙚𝙮𝙃𝙚𝙡𝙡𝙤")
         ],
         [
-            InlineKeyboardButton("𝙎𝙪𝙥𝙥𝙤𝙧𝙩 👥", url="https://t.me/THANMINHTWEFAMILY"),
-            InlineKeyboardButton("🪩 𝙐𝙥𝙙𝙖𝙩𝙚", url="https://t.me/CHANNEL_FOR_USS/4322")
+            InlineKeyboardButton("𝙎𝙪𝙥𝙥𝙤𝙧𝙩 👥", url="https://t.me/luxurypartner"),
+            InlineKeyboardButton("🪩 𝙐𝙥𝙙𝙖𝙩𝙚", url="https://t.me/Buddhaknowledge6/132")
         ],
         [
             InlineKeyboardButton("Add Me To Your Group ➕", url=f"https://t.me/{client.me.username}?startgroup=true")
