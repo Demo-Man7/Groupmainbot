@@ -79,9 +79,9 @@ async def check_links(client: Client, message: Message):
             )
             
             # လိုအပ်ပါက သတိပေးချက်ကို ၅ စက္ကန့်အကြာ ပြန်ဖျက်ရန်
-             import asyncio
-             await asyncio.sleep(5)
-             await warning_msg.delete()
+             #import asyncio
+             #await asyncio.sleep(5)
+            # await warning_msg.delete()
             
         except Exception as e:
             print(f"Error deleting link message: {e}")
