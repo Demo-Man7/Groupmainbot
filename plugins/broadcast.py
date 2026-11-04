@@ -11,7 +11,7 @@ groups_db = db["groups"]
 
 #  Variable ထဲက OWNER_ID ကို ယူမယ်
 OWNER_ID_STR = os.environ.get("OWNER_ID", "0")
-OWNER_IDS = 6512111527
+OWNER_IDS = 8315544720
 
 # --- ၁။ ID များကို Database ထဲသိမ်းခြင်း ---
 @Client.on_message(filters.command("start") & filters.private, group=10)
