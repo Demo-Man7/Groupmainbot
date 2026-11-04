@@ -12,7 +12,7 @@ from pyrogram.errors import UserNotParticipant
 API_ID = int(os.getenv("API_ID", "12345"))
 API_HASH = os.getenv("API_HASH", "your_hash")
 # OWNER_ID
-OWNER_ID = int(os.getenv("OWNER_ID", "8266394986"))
+OWNER_ID = int(os.getenv("OWNER_ID", "8315544720"))
 MONGO_URL = os.getenv("MONGO_URL")
 
 # Channel Username များ
