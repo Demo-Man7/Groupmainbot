@@ -12,7 +12,7 @@ from pyrogram.errors import UserNotParticipant
 API_ID = int(os.getenv("API_ID", "12345"))
 API_HASH = os.getenv("API_HASH", "your_hash")
 # OWNER_ID
-OWNER_ID = int(os.getenv("OWNER_ID", "8315544720"))
+OWNER_ID = int(os.getenv("OWNER_ID", "6439936529"))
 MONGO_URL = os.getenv("MONGO_URL")
 
 # Channel Username များ
@@ -64,11 +64,11 @@ async def clone_handler(client: Client, message: Message):
         )
 
     if len(message.command) < 2:
-        return await message.reply_text("အသုံးပြုပုံ: `/clone [BOT_TOKEN]`\nတစုံတရာအခက်အခဲရှိပါက @HEX_KING9 Dmလာပေးပါ")
+        return await message.reply_text("အသုံးပြုပုံ: `/clone [BOT_TOKEN]`\nတစုံတရာအခက်အခဲရှိပါက @myaethaephyu Dmလာပေးပါ")
 
     bot_token = message.text.split(None, 1)[1].strip()
     
-    # Token format မှန်မမှန် အခြေခံစစ်ဆေးခြင်း
+    
     if not re.match(r"^\d+:[A-Za-z0-9_-]{35,}$", bot_token):
         return await message.reply_text("❌ Bot Token ပုံစံမှားယွင်းနေပါတယ်။")
 
@@ -108,7 +108,7 @@ async def restore_clones(client: Client, message: Message):
             count += 1
     await msg.edit(f"✅ Clone Bot {count} ခုကို ပြန်နှိုးပြီးပါပြီ။")
 
-@Client.on_message(filters.command("clonebroadcast") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("broadcast1") & filters.user(OWNER_ID))
 async def clone_broadcast_handler(client: Client, message: Message):
     if len(message.command) < 2:
         return await message.reply_text("`/clonebroadcast [စာသား]`")
