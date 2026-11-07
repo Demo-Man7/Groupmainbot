@@ -9,11 +9,11 @@ from bot import db
 users_db = db["users"]
 groups_db = db["groups"]
 
-#  Variable ထဲက OWNER_ID ကို ယူမယ်
-OWNER_ID_STR = os.environ.get("OWNER_ID", "0")
-OWNER_IDS = 8315544720
 
-# --- ၁။ ID များကို Database ထဲသိမ်းခြင်း ---
+OWNER_ID_STR = os.environ.get("OWNER_ID", "6439936529")
+OWNER_IDS = 6439936529
+
+
 @Client.on_message(filters.command("start") & filters.private, group=10)
 async def track_users(_, message: Message):
     await users_db.update_one(
@@ -33,7 +33,7 @@ async def track_groups(_, message: Message):
                     upsert=True
                 )
 
-# --- ၂။ Broadcast Command (Owner သီးသန့်) ---
+
 @Client.on_message(filters.command("broadcast") & filters.user(OWNER_IDS))
 async def broadcast_msg(client: Client, message: Message):
     if not message.reply_to_message:
@@ -55,7 +55,7 @@ async def broadcast_msg(client: Client, message: Message):
             await msg.forward(chat_id=user["user_id"])
             u_count += 1
         except Exception:
-            # Block ထားတဲ့သူကို Database ထဲက ဖျက်မယ်
+            
             await users_db.delete_one({"user_id": user["user_id"]})
             u_failed += 1
 
