@@ -40,18 +40,18 @@ async def start_cmd(client: Client, message: Message):
         f"Welcome {user.mention} ✨\n\n"
         "**Group Help Bot** မှ ကြိုဆိုပါတယ်ဗျာ။\n"
         "Auto Reply နဲ့ Group Management Bot တစ်ခုဖြစ်ပါတယ်။\n"
-        "အချစ်ရေးများလည်းမေးလို့ရပါတယ် /love or /mylove or /couple ဖြင့်။\n"
+        "အချစ်ရေးများလည်းမေးလို့ရပါတယ် /happy /love or /mylove or /couple ဖြင့်။\n"
         "သိလိုရာများကို /help တွေကိုနှိပ်ပြီး လေ့လာနိုင်ပါတယ်ဗျာ။"
     )
 
     buttons = InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("𝘾𝙝𝙖𝙣𝙣𝙚𝙡 📢", url="https://t.me/myanmarbot_music"),
-            InlineKeyboardButton("𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧 👨‍💻", url="tg://resolve?domain=cores_999&text=𝙃𝙚𝙮𝙃𝙚𝙡𝙡𝙤")
+            InlineKeyboardButton("𝘾𝙝𝙖𝙣𝙣𝙚𝙡 📢", url="https://t.me/RoyalRebelsParty"),
+            InlineKeyboardButton("𝘿𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧 👨‍💻", url="tg://resolve?domain=myaethaephyu&text=𝙃𝙚𝙮𝙃𝙚𝙡𝙡𝙤")
         ],
         [
-            InlineKeyboardButton("𝙎𝙪𝙥𝙥𝙤𝙧𝙩 👥", url="https://t.me/myanmar_music_bot2027"),
-            InlineKeyboardButton("🪩 𝙐𝙥𝙙𝙖𝙩𝙚", url="https://t.me/myanmarbot_music/53")
+            InlineKeyboardButton("𝙎𝙪𝙥𝙥𝙤𝙧𝙩 👥", url="https://t.me/ZaxbysFamily"),
+            InlineKeyboardButton("🪩 𝙐𝙥𝙙𝙖𝙩𝙚", url="https://t.me/RoyalRebelsParty/645")
         ],
         [
             InlineKeyboardButton("Add Me To Your Group ➕", url=f"https://t.me/{client.me.username}?startgroup=true")
