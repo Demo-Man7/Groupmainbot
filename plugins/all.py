@@ -45,8 +45,8 @@ async def mention_all(client: Client, message: Message):
             try:
                 await client.send_message(
                     chat_id,
-                    f"📢 **{custom_message}**\n"
-                    f"✨ {mention_string}"
+                    f"**{custom_message}**\n"
+                    f"{mention_string}"
                 )
                 count += len(chunk)
                 await asyncio.sleep(2.5) 
