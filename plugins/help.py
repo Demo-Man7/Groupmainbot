@@ -23,7 +23,8 @@ async def help_command(client: Client, message: Message):
     help_text += "• `/happy` - groupတွင်ကြည့်ရန်\n"
     help_text += "• `/mylove` - အချစ်ရေးဟောရန်\n"
     help_text += "• `/all` - Group Mb tag ခေါ်ရန်\n"
-    help_text += "• `/love` - အချစ်ရေးဟောရန်\n\n"
+    help_text += "• `/love` - အချစ်ရေးဟောရန်\n"
+    help_text += "• `/antilink` - Group ထဲ link မပို့ရန်စနစ်\n\n"
 
 
     
