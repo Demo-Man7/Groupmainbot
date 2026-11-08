@@ -107,16 +107,16 @@ HAPPY_QUOTES = [
 
 @Client.on_message(filters.command("happy") & filters.group)
 async def happy_handler(client, message):
-    # စာသားထဲကနေ တစ်ခုကို random ရွေးမယ်
+    
     quote = random.choice(HAPPY_QUOTES)
     
-    # ရိုက်တဲ့သူရဲ့ နာမည်ကို ယူမယ်
+    
     user_name = message.from_user.first_name
     
     # Message ပုံစံအသစ်
     response_text = (
         f"**{user_name}**\n"
-        f"━━━━━━━━━━━━━━\n"
+        f"━━━━━━━━━━━━\n"
         f"{quote}"
     )
     
