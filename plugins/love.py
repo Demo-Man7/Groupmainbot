@@ -1,13 +1,13 @@
 import random
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from bot import db  # Database ချိတ်ဆက်မှုအတွက်
+from bot import db  
 
-# Database မှာ ပို့ပြီးသားစာတွေကို မှတ်ဖို့ Collection ဆောက်မယ်
+
 used_messages_db = db["used_love_messages"]
 
 
-# --- အကောင်း စာသား ၁၀၀ (နမူနာအချို့) ---
+
 GOOD_MESSAGES = [
     "ဒီနေ့တော့ မင်းရဲ့ Crush က မင်းကို စပရိုက်တိုက်လိမ့်မယ်နော်။ ✨",
     "မကြာခင်မှာ တကယ့် ဖူးစာရှင်စစ်စစ်နဲ့ ဆုံရတော့မယ်ဗျ။ ❤️",
@@ -112,7 +112,7 @@ GOOD_MESSAGES = [
 ]
 
 
-# --- အဆိုး စာသား ၁၀၀ (နမူနာအချို့) ---
+
 BAD_MESSAGES = [
     "ဒီနေ့တော့ အချစ်ရေးမှာ စိတ်ညစ်ရနိုင်တယ်၊ စိတ်ကို လျှော့ထားပါဦး။ ⛈️",
     "Crush က မင်းကို Seen ပဲ ထားဦးမှာပါပဲဗျာ။ 🙄",
@@ -222,23 +222,23 @@ async def love_horoscope(client: Client, message: Message):
     user_id = message.from_user.id
     all_messages = GOOD_MESSAGES + BAD_MESSAGES
     
-    # ၁။ ဒီ User အတွက် ပို့ပြီးသားစာရင်းကို DB ကနေ ကြည့်မယ်
+    
     user_data = await used_messages_db.find_one({"user_id": user_id})
     used_indices = user_data.get("indices", []) if user_data else []
 
-    # ၂။ မပို့ရသေးတဲ့ စာ index တွေကိုပဲ ရွေးထုတ်မယ်
+    
     available_indices = [i for i in range(len(all_messages)) if i not in used_indices]
 
-    # ၃။ စာ ၁၀၀ လုံး ကုန်သွားရင် စာရင်းပြန်ရှင်းမယ် (Reset)
+    
     if not available_indices:
         used_indices = []
         available_indices = [i for i in range(len(all_messages))]
 
-    # ၄။ မထပ်သေးတဲ့အထဲက Random တစ်ခု ရွေးမယ်
+    
     selected_index = random.choice(available_indices)
     selected_msg = all_messages[selected_index]
 
-    # ၅။ ရွေးပြီးသား index ကို DB ထဲမှာ မှတ်ထားမယ်
+    
     used_indices.append(selected_index)
     await used_messages_db.update_one(
         {"user_id": user_id},
@@ -246,7 +246,7 @@ async def love_horoscope(client: Client, message: Message):
         upsert=True
     )
 
-    # ၆။ စာပြန်ပို့မယ်
+    
     response_text = (
         f"💖 **{message.from_user.mention}** 💖\n"
         "━━━━━━━━━━━━━━━━━━\n"
