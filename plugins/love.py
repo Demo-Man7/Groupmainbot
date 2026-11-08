@@ -248,8 +248,8 @@ async def love_horoscope(client: Client, message: Message):
 
     
     response_text = (
-        f"💖 **{message.from_user.mention}** 💖\n"
-        "━━━━━━━━━━━━━━━━━━\n"
+        f"{message.from_user.mention}\n"
+        "━━━━━━━━━━━━\n"
         f"{selected_msg}"
     )
     
