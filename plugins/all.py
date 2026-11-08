@@ -22,6 +22,10 @@ emojis = [
 
 @Client.on_message(filters.command("all") & filters.group)
 async def mention_all(client: Client, message: Message):
+
+    if not message.from_user:
+        return await message.reply_text("❌ Anonymous Admin များအနေဖြင့် ဤ Command ကို အသုံးပြု၍ မရပါ။ ကိုယ်ပိုင်အကောင့်ဖြင့်သာ အသုံးပြုပါ။")
+
     chat_id = message.chat.id
     user_id = message.from_user.id
     
@@ -88,6 +92,10 @@ async def mention_all(client: Client, message: Message):
 
 @Client.on_message(filters.command("stop") & filters.group)
 async def stop_tagging(client: Client, message: Message):
+    
+    if not message.from_user:
+        return
+
     chat_id = message.chat.id
     user_id = message.from_user.id
 
