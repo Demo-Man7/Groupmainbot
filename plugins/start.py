@@ -3,14 +3,13 @@ import os
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-# --- Configuration ---
-# မင်းသတ်မှတ်ထားတဲ့ ပုံ Link
+
 DEFAULT_PHOTO = "https://files.catbox.moe/ajn24w.jpg" 
 WELCOME_STICKER = "CAACAgUAAxkBAAIe72mqfmL7cPOdiA5TOr6Gsih09cVTAALgGQACfA2YVRl1rlBfNwT5HgQ"
 
 @Client.on_message(filters.command("start") & filters.private)
 async def start_cmd(client: Client, message: Message):
-    # ၁။ စာသား တစ်လုံးချင်းပေါ်အောင်လုပ်မယ်
+    
     text = "𝒲ℯ𝓁𝒸ℴ𝓂ℯ ℬ𝒶𝒷𝓎"
     typing_msg = await message.reply_text("...")
     
@@ -25,7 +24,7 @@ async def start_cmd(client: Client, message: Message):
     
     await asyncio.sleep(1) 
     await typing_msg.delete()
-    # ၂။ Sticker ပို့မယ်
+    
     try:
         sent_stk = await message.reply_sticker(WELCOME_STICKER)
         await asyncio.sleep(5) 
@@ -33,7 +32,7 @@ async def start_cmd(client: Client, message: Message):
     except Exception as e:
         print(f"Sticker Error: {e}")
 
-    # ၃။ နောက်ဆုံး ပုံသေ သတ်မှတ်ထားတဲ့ ပုံ၊ စာသား နဲ့ Button ၅ ခု ပို့မယ်
+    
     user = message.from_user
     
     welcome_final = (
@@ -51,14 +50,14 @@ async def start_cmd(client: Client, message: Message):
         ],
         [
             InlineKeyboardButton("𝙎𝙪𝙥𝙥𝙤𝙧𝙩 👥", url="https://t.me/ZaxbysFamily"),
-            InlineKeyboardButton("🪩 𝙐𝙥𝙙𝙖𝙩𝙚", url="https://t.me/RoyalRebelsParty/645")
+            InlineKeyboardButton("🪩 𝙐𝙥𝙙𝙖𝙩𝙚", url="t.me/RoyalRebelsParty/650")
         ],
         [
-            InlineKeyboardButton("Add Me To Your Group ➕", url=f"https://t.me/{client.me.username}?startgroup=true")
+            InlineKeyboardButton("𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩 ➕", url=f"https://t.me/{client.me.username}?startgroup=true")
         ]
     ])
 
-    # User ပုံ ရှိရှိ မရှိရှိ DEFAULT_PHOTO ကိုပဲ သုံးမယ်
+    
     try:
         await message.reply_photo(
             photo=DEFAULT_PHOTO,
