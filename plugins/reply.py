@@ -1,5 +1,6 @@
 import os
 import asyncio
+import random
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from bot import db 
@@ -7,13 +8,44 @@ from bot import db
 # Database Collection
 replies = db["auto_replies"]
 
-# Variable ထဲက OWNER_ID ကို ယူမယ် (မရှိရင် 0 လို့ ထားမယ်)
+
 OWNER_ID_STR = os.environ.get("OWNER_ID", "0")
 OWNER_IDS = [int(i.strip()) for i in OWNER_ID_STR.split(",") if i.strip().isdigit()]
 
+
+reactions_list = ["👎", "👍", "👌", "🙏", "🤌", "🫰", "💘", "🍓", "💯", "🤣", "😭","❤","❌"]
+
+
+BOT_MENTION_REPLY = "**မင်္ဂလာပါ ခင်ဗျာ! ကျွန်တော့်က AutoReply ဖြစ်ပါတယ်**"
+
 @Client.on_message(filters.group & ~filters.bot)
 async def auto_learn_and_reply(client: Client, message: Message):
-    # --- ၁။ Auto Learning (Global - အကုန်လုံးအတွက် မှတ်မယ်) ---
+    
+    
+    bot_username = (await client.get_me()).username
+    is_mentioned = False
+    
+    if message.mentioned:
+        is_mentioned = True
+    elif message.reply_to_message and message.reply_to_message.from_user:
+        if message.reply_to_message.from_user.id == (await client.get_me()).id:
+            is_mentioned = True
+
+    
+    if is_mentioned:
+        try:
+            random_emoji = random.choice(reactions_list)
+            await client.send_reaction(
+                chat_id=message.chat.id,
+                message_id=message.id,
+                emoji=random_emoji
+            )
+        except Exception:
+            pass
+            
+        return await message.reply_text(BOT_MENTION_REPLY)
+
+    
     if message.reply_to_message:
         reply_to = message.reply_to_message
         
@@ -38,7 +70,6 @@ async def auto_learn_and_reply(client: Client, message: Message):
             reply_type = "sticker"
 
         if trigger and reply_data:
-            # chat_id မပါဘဲ စစ်တဲ့အတွက် Group အားလုံးအတွက် တစ်ခုပဲ မှတ်ပါမယ်
             exists = await replies.find_one({"trigger": trigger})
             if not exists:
                 await replies.insert_one({
@@ -48,7 +79,7 @@ async def auto_learn_and_reply(client: Client, message: Message):
                     "reply_type": reply_type
                 })
 
-    # --- ၂။ Auto Reply (ဘယ် Group မှာမဆို ပြန်ဖြေမယ်) ---
+    
     else:
         current_trigger = None
         if message.text:
@@ -59,16 +90,25 @@ async def auto_learn_and_reply(client: Client, message: Message):
         if current_trigger:
             found = await replies.find_one({"trigger": current_trigger})
             if found:
+                try:
+                    random_emoji = random.choice(reactions_list)
+                    await client.send_reaction(
+                        chat_id=message.chat.id,
+                        message_id=message.id,
+                        emoji=random_emoji
+                    )
+                except Exception as e:
+                    print(f"Reaction Error: {e}")
+
                 if found["reply_type"] == "text":
                     await message.reply_text(found["reply"])
                 else:
                     await message.reply_sticker(found["reply"])
 
-# --- ၃။ Delete Command (Owner သီးသန့်) ---
+
 @Client.on_message(filters.command("del"))
 async def delete_reply(client: Client, message: Message):
-    # Owner စစ်ဆေးခြင်း
-    if message.from_user.id != OWNER_ID:
+    if not message.from_user or message.from_user.id not in OWNER_IDS:
         return 
 
     if not message.reply_to_message:
@@ -83,7 +123,6 @@ async def delete_reply(client: Client, message: Message):
         trigger_to_del = reply_to.sticker.file_unique_id
 
     if trigger_to_del:
-        # Global ဖြစ်တဲ့အတွက် ဒီ trigger နဲ့ ဆိုင်သမျှ အကုန်ဖျက်မယ်
         result = await replies.delete_many({"trigger": trigger_to_del})
         if result.deleted_count > 0:
             await message.reply_text(f"🗑️ အမေးစာ '{trigger_to_del}' အတွက် အဖြေကို Global Database ထဲက ဖျက်လိုက်ပါပြီ။")
